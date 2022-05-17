@@ -1,0 +1,30 @@
+markdown
+
+# Final Project Blog
+## Andi Zenku
+
+## Project Overview
+
+This semester we were given the task to explore data and do our own analysis on whatever topics we cared to look into. Personally, I wanted to take this oppertunity to explore video games in a way, as I have always been an avid player. Ever since I was little, I could always be found playing something from a little soccer shoot out game on my dads flip phone to pokemon or fire emblem on my game boy. Games have always been a part of me as I have grown, and learning about video games is a fun thing I like to do given the oppertunity. This time, instead of analyzing big video games that you can play on expensive and powerful gaming rigs, I wanted to look into the games that grasp the biggest proportion of our population. Smaller, quick little simple games have been overtaking the community and creating new comminuties themselves, and people who don't even consider themselves gamers play these games religiously. These games might not have invigorating storylines or crazy beautiful graphics. One such game that caught my eye was Wordle. This was a small word game that can be played once per day, but it quickly caught on fire and had a huge communitity behind it. It was even bought by the New York Times! Josh Wardle created this game as a side project from his work as a software developer. He admitted to not even considering himself a game creator. This small game was made just for him and his partner that liked word games during the pandemic to spend more time together when apart. The game was hosted on his own small website and then shared it with close friends and family. In just months, the game took twitter and the internet by storm. From that background, that is where I come in with my project exploring Wordle. I attempted to learn more about this game and how it gained popularity. A huge part for that was the community it created on twitter. With each game being easily shared through a link that shows your exact experience without giving away information to other players, here is the pasted verison:
+Wordle 296 4/6
+
+⬛🟨⬛⬛⬛
+🟩⬛⬛🟩🟩
+🟩⬛⬛🟩🟩
+🟩🟩🟩🟩🟩
+
+The simplicity and ease of not only the game but its sharing capabilities grew the community, and I wanted to explore that. I used twint to gather twitter data pertaining to the game to learn more.
+
+## The Process
+
+At first, I was off to a very rocky start. I started by signing up for the offical Twitter API with python, but problems quickly arose. A regular account would limit the amount of tweets you could gather drastically, which is a big problem since I would need to collect a lot of tweets of people sharing game results. The work around here was signing up for a education account of the twitter API, but to this day I still am waiting for either an approval or denial. Some others in class found twint, which is a package that can pull twitter data itself! This saved me, and I begun my project by researching twint. https://github.com/twintproject/twint 
+After attempting my first search, I already ran into an error stating that twint would not work. It took a decent amount of scourging online to find someone who had that issue, and their workaround: https://github.com/twintproject/twint/issues/1370
+I had to uninstall and download an upgraded version that would actually work. Now, then I began pulling tweets. At first I began pulling every tweet containing 'wordle' but that gave too many unecessary tweets of people just talking about the game. I then updated that to contain the specific dark box emoji when the tweeter would miss a letter. This gave me almost all wordle game entries. I converted my scaping into a pandas df and then proceeded to clean the data even more, making sure it contains wordle in it as well. Now, twint created a date column for each tweet, but it came with the hours and seconds in time afterwards too. This would pose a problem when I would plot how many tweets about wordle happened per day, as it would split into second level data. I used string manipulation to split the df['time'] entries and take only the date and put that into a column called 'day'. This allowed me to aggregate the data and sum them to have counts of how many tweets per day. This is when the real troubles began. I started with limiting the data pulling to 100 entries, then to 1000. I saw that all that data was just happenining in 1 day. I then bumped it up to 10000, which also was 1 day. This was when runtime began to be a problem. At 100,000 tweets being scraped, it would take about 25 minutes to finish. This also ended up being only 2 days worth of data. While stressing, I put the limit to 1 million tweets and let it run throught my day. 1 and a half hours later, only about 400,000 were pulled, which is another problem I will get into, and that was only in the past 8 days! The time it was taking to pull all these tweets was way too long, even though I am using a fairly powerful desktop. 
+![](image1.png)
+
+
+As mentioned above, there seemed to be missing tweets in my searches. All I could access for some reason was the last week of the time constaint I inputted, until I change the search to be about 5 months after the creation of wordle, where there are no tweets at all. This is another critical issue with my project, and held back my work. I was unable to do my intial goal of collecting every tweet per day containing wordle, then graphing it so we could see the trend of how popular wordle became on twitter. Sadly, the runtime it takes to gather millions worth of tweets and my issues with twint did not allow me to answer my original task. On the other hand, I did some analysis on the number of incorrect and correct squares tweets had. 
+![](correctgraph.png)
+As shown above we see the number of correct boxes and incorrect boxes to be fairly even, with slightly more correct squares. That can be explained by if someone gets a correct square, they will continue to enter the correct square until the end of the game. 
+
+I wish I could have done more critical analysis, but due to timeframes and problematic code I will have to leave it here.
